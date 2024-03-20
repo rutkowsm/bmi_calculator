@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Convert String to float
                 try {
-                    userHeight = Float.parseFloat(userHeightTxt) / 100; // assuming height is entered in centimeters
+                    userHeight = Float.parseFloat(userHeightTxt) / 100; // height is entered in centimeters
                     userWeight = Float.parseFloat(userWeightTxt);
 
                     // Calculate BMI
