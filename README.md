@@ -8,3 +8,10 @@ Dane wejściowe:
 Dane wyjściowe: 
   - indeks BMI.
 
+Ekran startowy:
+
+![image](https://github.com/rutkowsm/bmi_calculator/assets/37616390/b1bfcf99-03ca-4571-a014-6c44a5469324)
+
+Wprowadzanie danych:
+
+
