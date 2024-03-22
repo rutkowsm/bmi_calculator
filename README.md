@@ -10,7 +10,7 @@ Dane wyjściowe:
 
 Ekran startowy:
 
-![image](https://github.com/rutkowsm/bmi_calculator/assets/37616390/b1bfcf99-03ca-4571-a014-6c44a5469324)
+![image](https://github.com/rutkowsm/bmi_calculator/assets/37616390/e5de9a96-0f81-43c0-a6b8-8b9bd470036b)
 
 Wprowadzanie danych i kalkulacja:
 
