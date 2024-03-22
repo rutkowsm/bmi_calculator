@@ -16,6 +16,14 @@ public class MainActivity extends AppCompatActivity {
     String userHeightTxt, userWeightTxt;
     float userHeight, userWeight, bmiIndex;
 
+    private void clearInputs() {
+        input_height.setText("");
+        input_weight.setText("");
+    }
+
+    private void clearOutputs() {
+        display_bmi.setText("");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +63,8 @@ public class MainActivity extends AppCompatActivity {
         button_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display_bmi.setText("");
-                input_height.setText("");
-                input_weight.setText("");
+                clearInputs();
+                clearOutputs();
             }
         });
     }
