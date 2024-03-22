@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     EditText input_height, input_weight;
-    Button button_ok;
+    Button button_ok, button_clear;
     TextView display_bmi;
     String userHeightTxt, userWeightTxt;
     float userHeight, userWeight, bmiIndex;
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         input_weight = findViewById(R.id.input_weight);
         input_height = findViewById(R.id.input_height);
         button_ok = findViewById(R.id.button_ok);
+        button_clear = findViewById(R.id.button_clear);
         display_bmi = findViewById(R.id.display_bmi);
 
         button_ok.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
                     // Handle exception if input is not a valid number
                     display_bmi.setText("Invalid input");
                 }
+            }
+        });
+
+        button_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                display_bmi.setText("");
+                input_height.setText("");
+                input_weight.setText("");
             }
         });
     }
