@@ -1,7 +1,5 @@
-#####
 PAMO 2024 - Zadanie nr 1
 Autor: Marcin Rutkowski - s12497 - Gr. 12c
-#####
 
 Aplikacja do obliczania indeksu BMI.
 
