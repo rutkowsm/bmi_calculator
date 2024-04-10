@@ -29,7 +29,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
         Recipe recipe = recipes.get(position);
-        holder.textViewCountryName.setText(recipe.getName());
+        holder.textViewDishName.setText(recipe.getName());
         holder.textViewDetail.setText(recipe.getDescription());
         holder.imageView.setImageResource(recipe.getImageResourceId());
     }
@@ -41,13 +41,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     // Definicja klasy ViewHolder
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView textViewCountryName, textViewDetail;
+        public TextView textViewDishName, textViewDetail;
         public ImageView imageView;
         OnRecipeListener onRecipeListener;
 
         public RecipeViewHolder(View itemView, OnRecipeListener onRecipeListener) {
             super(itemView);
-            textViewCountryName = itemView.findViewById(R.id.textViewCountryName);
+            textViewDishName = itemView.findViewById(R.id.textViewDishName);
             textViewDetail = itemView.findViewById(R.id.textViewDetail);
             imageView = itemView.findViewById(R.id.imageView);
             this.onRecipeListener = onRecipeListener;

@@ -29,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/textViewCountryName"
+            android:id="@+id/textViewDishName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -51,9 +51,9 @@
             android:text="Recipe Details"
             android:textColor="#808080"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@id/textViewCountryName"
-            app:layout_constraintEnd_toEndOf="@id/textViewCountryName"
-            app:layout_constraintTop_toBottomOf="@id/textViewCountryName" />
+            app:layout_constraintStart_toStartOf="@id/textViewDishName"
+            app:layout_constraintEnd_toEndOf="@id/textViewDishName"
+            app:layout_constraintTop_toBottomOf="@id/textViewDishName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
