@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class CaloryIntakeActivity extends AppCompatActivity{
 
     EditText input_height, input_weight, input_age;
-    Button button_calc, button_clear;
+    Button button_calc, button_clear, button_find_recipies;
     RadioGroup radio_group;
     RadioButton radio_male, radio_female;
     TextView display_intake;
@@ -50,6 +50,7 @@ public class CaloryIntakeActivity extends AppCompatActivity{
         radio_female = findViewById(R.id.radio_female);
         display_intake = findViewById(R.id.display_intake);
         homeImg = findViewById(R.id.homeImg);
+        button_find_recipies = findViewById(R.id.button_find_recipes);
 
         button_calc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +98,15 @@ public class CaloryIntakeActivity extends AppCompatActivity{
             public void onClick(View v) {
                 clearInputs();
                 clearOutputs();
+            }
+        });
+
+        button_find_recipies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Uruchomienie RecipesActivity
+                Intent intent = new Intent(CaloryIntakeActivity.this, RecipeActivity.class);
+                startActivity(intent);
             }
         });
     }
