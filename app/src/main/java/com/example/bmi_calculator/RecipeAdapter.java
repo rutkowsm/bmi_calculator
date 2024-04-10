@@ -39,7 +39,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return recipes.size();
     }
 
-    // Definicja klasy ViewHolder
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView textViewDishName, textViewDetail;
         public ImageView imageView;
