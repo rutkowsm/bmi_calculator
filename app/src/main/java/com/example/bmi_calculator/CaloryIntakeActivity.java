@@ -18,7 +18,7 @@ public class CaloryIntakeActivity extends AppCompatActivity{
     RadioButton radio_male, radio_female;
     TextView display_intake;
     String userHeightTxt, userWeightTxt, userAgeTxt;
-    float userHeight, userWeight, userAge, caloryIntake, userGenderFactor;
+    float userHeight, userWeight, userAge, caloryIntake, userGenderFactor = 0;
 
     private void clearInputs() {
         input_height.setText("");
@@ -71,7 +71,7 @@ public class CaloryIntakeActivity extends AppCompatActivity{
                     caloryIntake = (float) ((10*userWeight)+(6.25*userHeight)-(5*userAge)+userGenderFactor);
 
                     // Display BMI
-                    display_intake.setText(String.format("You can eat: %.2f", caloryIntake, " kcal"));
+                    display_intake.setText(String.format("You can eat: %.2f kcal", caloryIntake));
                 } catch (NumberFormatException e) {
                     // Handle exception if input is not a valid number
                     display_intake.setText("Invalid input");
