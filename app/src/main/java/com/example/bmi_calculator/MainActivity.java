@@ -2,10 +2,13 @@ package com.example.bmi_calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     TextView display_bmi;
     String userHeightTxt, userWeightTxt;
     float userHeight, userWeight, bmiIndex;
+    ImageView homeImg;
 
     private void clearInputs() {
         input_height.setText("");
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         button_ok = findViewById(R.id.button_ok);
         button_clear = findViewById(R.id.button_clear);
         display_bmi = findViewById(R.id.display_bmi);
+        homeImg = findViewById(R.id.homeImg);
 
         button_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
                     // Handle exception if input is not a valid number
                     display_bmi.setText("Invalid input");
                 }
+            }
+        });
+
+        homeImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SplashScreenActivity.class);
+                startActivity(intent);
             }
         });
 

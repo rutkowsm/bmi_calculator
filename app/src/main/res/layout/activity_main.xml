@@ -11,6 +11,15 @@
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="25dp">
 
+    <ImageView
+        android:id="@+id/homeImg"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/baseline_home_24" />
+
     <EditText
         android:id="@+id/input_height"
         android:layout_width="200dp"

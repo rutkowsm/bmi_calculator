@@ -3,9 +3,12 @@ package com.example.bmi_calculator;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -19,6 +22,7 @@ public class CaloryIntakeActivity extends AppCompatActivity{
     TextView display_intake;
     String userHeightTxt, userWeightTxt, userAgeTxt;
     float userHeight, userWeight, userAge, caloryIntake, userGenderFactor = 0;
+    ImageView homeImg;
 
     private void clearInputs() {
         input_height.setText("");
@@ -45,6 +49,7 @@ public class CaloryIntakeActivity extends AppCompatActivity{
         radio_male = findViewById(R.id.radio_male);
         radio_female = findViewById(R.id.radio_female);
         display_intake = findViewById(R.id.display_intake);
+        homeImg = findViewById(R.id.homeImg);
 
         button_calc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +81,14 @@ public class CaloryIntakeActivity extends AppCompatActivity{
                     // Handle exception if input is not a valid number
                     display_intake.setText("Invalid input");
                 }
+            }
+        });
+
+        homeImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CaloryIntakeActivity.this, SplashScreenActivity.class);
+                startActivity(intent);
             }
         });
 
