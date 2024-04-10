@@ -13,15 +13,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bmi_calculator"
-        tools:targetApi="31">
+        tools:targetApi="30">
+        <!-- Starting screen activity declaration -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".CaloryIntakeActivity"
+            android:exported="true">
         </activity>
     </application>
 

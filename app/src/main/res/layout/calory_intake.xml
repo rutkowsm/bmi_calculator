@@ -15,7 +15,7 @@
         android:id="@+id/input_height"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="enter your height in cm"
         android:inputType="number" />
@@ -24,23 +24,51 @@
         android:id="@+id/input_weight"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="enter your weight in kg"
         android:inputType="number" />
 
+    <EditText
+        android:id="@+id/input_age"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="enter your age"
+        android:inputType="number" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radio_male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/radio_female"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+    </RadioGroup>
+
     <Button
-        android:id="@+id/button_ok"
+        android:id="@+id/button_calculate"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Calculate BMI" />
+        android:layout_marginTop="20dp"
+        android:text="Calculate Intake" />
 
     <TextView
-        android:id="@+id/display_bmi"
+        android:id="@+id/display_intake"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="#FAF7F7"
         android:textAlignment="center"
         android:textSize="20sp" />
@@ -49,7 +77,7 @@
         android:id="@+id/button_clear"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Clear all" />
 
 </LinearLayout>
