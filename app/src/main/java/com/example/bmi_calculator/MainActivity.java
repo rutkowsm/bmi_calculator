@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     display_bmi.setText(String.format("Your BMI: %.2f", bmiIndex));
                 } catch (NumberFormatException e) {
                     // Handle exception if input is not a valid number
-                    display_bmi.setText("Invalid input");
+                    display_bmi.setText("Invalid Input");
                 }
             }
         });
