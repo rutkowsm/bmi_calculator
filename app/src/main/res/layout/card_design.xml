@@ -8,7 +8,7 @@
     android:backgroundTint="#EDC344"
     app:cardCornerRadius="7dp"
     app:cardElevation="7dp"
-    tools:context=".RecipesActivity">
+    tools:context="RecipeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
