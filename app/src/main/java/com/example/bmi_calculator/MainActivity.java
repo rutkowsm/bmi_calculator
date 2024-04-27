@@ -25,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
         input_weight.setText("");
     }
 
+    public static float calculateBMI(float weight, float height) {
+        float heightInMeters = height / 100;
+        return weight / (heightInMeters * heightInMeters);
+    }
+
+
     private void clearOutputs() {
         display_bmi.setText("");
     }
@@ -54,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     userWeight = Float.parseFloat(userWeightTxt);
 
                     // Calculate BMI
-                    bmiIndex = userWeight / (userHeight * userHeight);
+                    bmiIndex = calculateBMI(userWeight, userHeight);
 
                     // Display BMI
                     display_bmi.setText(String.format("Your BMI: %.2f", bmiIndex));
