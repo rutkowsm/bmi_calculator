@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     float userHeight, userWeight, bmiIndex;
     ImageView homeImg;
 
+    ImageView shoppingCartImg;
+
     private void clearInputs() {
         input_height.setText("");
         input_weight.setText("");
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         button_clear = findViewById(R.id.button_clear);
         display_bmi = findViewById(R.id.display_bmi);
         homeImg = findViewById(R.id.homeImg);
+        shoppingCartImg = findViewById(R.id.shoppingCartImg);
 
         button_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SplashScreenActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        shoppingCartImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ShoppingListActivity.class);
                 startActivity(intent);
             }
         });

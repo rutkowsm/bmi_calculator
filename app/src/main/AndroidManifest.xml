@@ -35,6 +35,8 @@
             android:name=".RecipeActivity">
         </activity>
         <activity android:name=".RecipeDetailActivity" />
+        <activity android:name=".ShoppingListActivity" />
+
 
     </application>
 
