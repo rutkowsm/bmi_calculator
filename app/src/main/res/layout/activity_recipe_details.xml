@@ -10,7 +10,12 @@
         android:id="@+id/horizontalLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/recipeImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/homeImg"
@@ -18,16 +23,16 @@
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/baseline_home_24" />
 
         <ImageView
             android:id="@+id/shoppingCartImg"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/baseline_add_shopping_cart_24"
             app:layout_constraintEnd_toStartOf="@+id/homeImg"

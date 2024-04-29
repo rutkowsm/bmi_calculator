@@ -26,7 +26,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         buttonAddProduct = findViewById(R.id.buttonAddProduct);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new ShoppingListAdapter(new ArrayList<>());
+        adapter = new ShoppingListAdapter();
         recyclerView.setAdapter(adapter);
 
         buttonAddProduct.setOnClickListener(new View.OnClickListener() {

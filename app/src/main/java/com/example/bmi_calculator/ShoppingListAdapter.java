@@ -1,72 +1,73 @@
 package com.example.bmi_calculator;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.TextView;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapter.ShoppingListHolder> {
-    private List<ShoppingProduct> productList;
-    public ShoppingListAdapter(List<ShoppingProduct> productList) {
-        this.productList = productList;
+public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapter.ShoppingViewHolder> {
+    private List<ShoppingProduct> shoppingList;
+
+    public ShoppingListAdapter() {
+        this.shoppingList = new ArrayList<>();
     }
 
     @NonNull
     @Override
-    public ShoppingListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shopping_list_element_design, parent, false);
-        return new ShoppingListHolder(view);
+    public ShoppingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.shopping_list_element_design, parent, false);
+        return new ShoppingViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ShoppingListHolder holder, int position) {
-        ShoppingProduct product = productList.get(position);
-        holder.bind(product);
+    public void onBindViewHolder(@NonNull ShoppingViewHolder holder, int position) {
+        ShoppingProduct currentProduct = shoppingList.get(position);
+        holder.textViewProductName.setText(currentProduct.getName());
+        holder.checkBoxProductList.setChecked(currentProduct.isChecked());
+
+        // Update text view appearance based on whether the checkbox is checked
+        if (currentProduct.isChecked()) {
+            holder.textViewProductName.setPaintFlags(holder.textViewProductName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.textViewProductName.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.gray_out));
+        } else {
+            holder.textViewProductName.setPaintFlags(holder.textViewProductName.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+            holder.textViewProductName.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.black));  // Assume you have defined black color
+        }
+
+        // Set a listener for changes in checkbox state
+        holder.checkBoxProductList.setOnCheckedChangeListener(null);
+        holder.checkBoxProductList.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            currentProduct.setChecked(isChecked);
+            notifyItemChanged(position);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return shoppingList.size();
     }
 
     public void addProduct(ShoppingProduct product) {
-        productList.add(product);
-        notifyDataSetChanged();
+        shoppingList.add(product);
+        notifyItemInserted(shoppingList.size() - 1);
     }
 
-    public class ShoppingListHolder extends RecyclerView.ViewHolder {
-        private TextView productNameTextView;
-        private CheckBox productCheckBox;
+    public static class ShoppingViewHolder extends RecyclerView.ViewHolder {
+        TextView textViewProductName;
+        CheckBox checkBoxProductList;
 
-        public ShoppingListHolder(@NonNull View itemView) {
+        public ShoppingViewHolder(View itemView) {
             super(itemView);
-            productNameTextView = itemView.findViewById(R.id.textViewProductName);
-            productCheckBox = itemView.findViewById(R.id.checkBoxProductList);
-
-            productCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                int position = getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    ShoppingProduct product = productList.get(position);
-                    product.setChecked(isChecked);
-                }
-            });
-        }
-
-        public void bind(ShoppingProduct product) {
-            productNameTextView.setText(product.getName());
-            productCheckBox.setChecked(product.isChecked());
+            textViewProductName = itemView.findViewById(R.id.textViewProductName);
+            checkBoxProductList = itemView.findViewById(R.id.checkBoxProductList);
         }
     }
 }
