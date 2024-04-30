@@ -1,6 +1,8 @@
 package com.example.bmi_calculator;
 
 import android.graphics.Paint;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,24 +33,39 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
     public void onBindViewHolder(@NonNull ShoppingViewHolder holder, int position) {
         ShoppingProduct currentProduct = shoppingList.get(position);
         holder.textViewProductName.setText(currentProduct.getName());
-        holder.checkBoxProductList.setChecked(currentProduct.isChecked());
+        holder.checkBoxProductList.setOnCheckedChangeListener(null);  // Detach any existing listeners
+        holder.checkBoxProductList.setChecked(currentProduct.isChecked());  // Set the initial state
 
-        // Update text view appearance based on whether the checkbox is checked
-        if (currentProduct.isChecked()) {
+        // Update the visual appearance based on the checked state
+        updateTextAppearance(holder, currentProduct.isChecked());
+
+        // Reattach the listener
+        holder.checkBoxProductList.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
+                // Update the item's state
+                ShoppingProduct product = shoppingList.get(holder.getAdapterPosition());
+                product.setChecked(isChecked);
+                updateTextAppearance(holder, isChecked);
+
+                // Use a handler to delay notifying changes
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    notifyItemChanged(holder.getAdapterPosition());
+                });
+            }
+        });
+    }
+
+    private void updateTextAppearance(ShoppingViewHolder holder, boolean isChecked) {
+        if (isChecked) {
             holder.textViewProductName.setPaintFlags(holder.textViewProductName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             holder.textViewProductName.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.gray_out));
         } else {
             holder.textViewProductName.setPaintFlags(holder.textViewProductName.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-            holder.textViewProductName.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.black));  // Assume you have defined black color
+            holder.textViewProductName.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.black));
         }
-
-        // Set a listener for changes in checkbox state
-        holder.checkBoxProductList.setOnCheckedChangeListener(null);
-        holder.checkBoxProductList.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            currentProduct.setChecked(isChecked);
-            notifyItemChanged(position);
-        });
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -68,6 +85,22 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
             super(itemView);
             textViewProductName = itemView.findViewById(R.id.textViewProductName);
             checkBoxProductList = itemView.findViewById(R.id.checkBoxProductList);
+        }
+    }
+
+    public void removeCheckedItems() {
+        for (int i = shoppingList.size() - 1; i >= 0; i--) {  // Iterate backwards to avoid concurrent modification issues
+            if (shoppingList.get(i).isChecked()) {
+                shoppingList.remove(i);
+                notifyItemRemoved(i);
+            }
+        }
+    }
+
+    public void clearShoppingList(){
+        for (int i = shoppingList.size() - 1; i>= 0; i--) {
+            shoppingList.remove(i);
+            notifyItemRemoved(i);
         }
     }
 }

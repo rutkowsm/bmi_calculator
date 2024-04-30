@@ -2,6 +2,7 @@ package com.example.bmi_calculator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,6 +93,15 @@ public class RecipeActivity extends AppCompatActivity {
         homeImg.setOnClickListener(v -> {
             Intent intent = new Intent(RecipeActivity.this, SplashScreenActivity.class);
             startActivity(intent);
+        });
+
+        ImageView shoppingCartImg = findViewById(R.id.shoppingCartImg);
+        shoppingCartImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecipeActivity.this, ShoppingListActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

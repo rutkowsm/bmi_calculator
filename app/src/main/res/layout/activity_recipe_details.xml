@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="2dp">
 
             <TextView
                 android:id="@+id/recipeName"
@@ -88,8 +88,8 @@
                 android:id="@+id/recipeSteps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Preparation Steps..."
                 android:layout_marginTop="8dp"
+                android:text="Preparation Steps..."
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <!-- Możesz dodać więcej widoków według potrzeb -->

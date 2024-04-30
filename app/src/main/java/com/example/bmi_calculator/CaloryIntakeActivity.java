@@ -93,6 +93,15 @@ public class CaloryIntakeActivity extends AppCompatActivity{
             }
         });
 
+        ImageView shoppingCartImg = findViewById(R.id.shoppingCartImg);
+        shoppingCartImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CaloryIntakeActivity.this, ShoppingListActivity.class);
+                startActivity(intent);
+            }
+        });
+
         button_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

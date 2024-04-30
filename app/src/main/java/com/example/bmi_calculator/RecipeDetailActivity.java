@@ -46,6 +46,15 @@ public class RecipeDetailActivity extends AppCompatActivity {
             Intent intent = new Intent(RecipeDetailActivity.this, SplashScreenActivity.class);
             startActivity(intent);
         });
+
+        ImageView shoppingCartImg = findViewById(R.id.shoppingCartImg);
+        shoppingCartImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecipeDetailActivity.this, ShoppingListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
