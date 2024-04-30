@@ -1,11 +1,18 @@
 package com.example.bmi_calculator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +40,8 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         adapter = new ShoppingListAdapter();
         recyclerView.setAdapter(adapter);
+
+        restoreShoppingList();
 
         buttonAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,5 +83,33 @@ public class ShoppingListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveShoppingList();  // Save items when the activity is paused
+    }
+
+    private void saveShoppingList() {
+        SharedPreferences prefs = getSharedPreferences("ShoppingListPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(adapter.getShoppingList());
+        editor.putString("shoppingList", json);
+        editor.apply();
+    }
+
+    private void restoreShoppingList() {
+        SharedPreferences prefs = getSharedPreferences("ShoppingListPrefs", MODE_PRIVATE);
+        String json = prefs.getString("shoppingList", null);
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<ShoppingProduct>>() {}.getType();
+        List<ShoppingProduct> items = gson.fromJson(json, type);
+        if (items != null) {
+            for (ShoppingProduct product : items) {
+                adapter.addProduct(product);
+            }
+        }
     }
 }

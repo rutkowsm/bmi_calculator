@@ -51,5 +51,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
     androidTestImplementation("androidx.test.espresso:espresso-idling-resource:3.5.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.google.code.gson:gson:2.10")
     implementation("de.hdodenhof:circleimageview:3.1.0")
 }

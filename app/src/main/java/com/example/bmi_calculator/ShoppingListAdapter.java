@@ -103,4 +103,15 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
             notifyItemRemoved(i);
         }
     }
+
+    public List<ShoppingProduct> getShoppingList() {
+        return shoppingList;
+    }
+
+    public void addProducts(List<ShoppingProduct> products) {
+        int startSize = shoppingList.size();
+        shoppingList.addAll(products);
+        notifyItemRangeInserted(startSize, products.size());
+    }
+
 }
