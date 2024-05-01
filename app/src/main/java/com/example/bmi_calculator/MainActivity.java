@@ -18,9 +18,7 @@ public class MainActivity extends AppCompatActivity {
     TextView display_bmi;
     String userHeightTxt, userWeightTxt;
     float userHeight, userWeight, bmiIndex;
-    ImageView homeImg;
-
-    ImageView shoppingCartImg;
+    ImageView homeImg, shoppingCartImg, chartBmiImg;
 
     private void clearInputs() {
         input_height.setText("");
@@ -49,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         display_bmi = findViewById(R.id.display_bmi);
         homeImg = findViewById(R.id.homeImg);
         shoppingCartImg = findViewById(R.id.shoppingCartImg);
+        chartBmiImg = findViewById(R.id.chartBmiImg);
 
         button_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +94,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 clearInputs();
                 clearOutputs();
+            }
+        });
+
+        chartBmiImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BmiChartActivity.class);
+                startActivity(intent);
             }
         });
     }
