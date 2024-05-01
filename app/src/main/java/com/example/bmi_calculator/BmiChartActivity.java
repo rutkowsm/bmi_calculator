@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +29,8 @@ public class BmiChartActivity extends AppCompatActivity {
     ImageView homeImg, shoppingCartImg;
     private List<String> bmiList;
     private ListView listBmiResults;
+    private WebView webViewBmiChart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +42,12 @@ public class BmiChartActivity extends AppCompatActivity {
         homeImg = findViewById(R.id.homeImg);
         shoppingCartImg = findViewById(R.id.shoppingCartImg);
         listBmiResults = findViewById(R.id.listBmiResults);
+        webViewBmiChart = findViewById(R.id.webViewBmiChart);
         bmiList = new ArrayList<>();
 
-        homeImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BmiChartActivity.this, SplashScreenActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        shoppingCartImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BmiChartActivity.this, ShoppingListActivity.class);
-                startActivity(intent);
-            }
-        });
+        homeImg.setOnClickListener(v -> startActivity(new Intent(BmiChartActivity.this, SplashScreenActivity.class)));
+        shoppingCartImg.setOnClickListener(v -> startActivity(new Intent(BmiChartActivity.this, ShoppingListActivity.class)));
 
         Map<String, Double> bmiResults = BmiDataManager.loadBmiResults(this);
         for (Map.Entry<String, Double> entry : bmiResults.entrySet()) {
@@ -63,6 +56,32 @@ public class BmiChartActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bmiList);
         listBmiResults.setAdapter(adapter);
+
+        webViewBmiChart.getSettings().setJavaScriptEnabled(true);
+
+        bmiResults = BmiDataManager.loadBmiResults(this);
+        ArrayList<String> labels = new ArrayList<>();
+        ArrayList<Double> values = new ArrayList<>();
+
+        for (Map.Entry<String, Double> entry : bmiResults.entrySet()) {
+            labels.add("'" + entry.getKey() + "'");
+            values.add(entry.getValue());
+        }
+
+        // Convert to JSON strings
+        Gson gson = new Gson();
+        final String jsonLabels = gson.toJson(labels);
+        final String jsonValues = gson.toJson(values);
+        webViewBmiChart.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                String jsCode = "javascript:drawChart(" + jsonLabels + ", " + jsonValues + ");";
+                webViewBmiChart.evaluateJavascript(jsCode, null);
+            }
+        });
+
+        webViewBmiChart.loadUrl("file:///android_asset/bmi_chart.html");
     }
 
 

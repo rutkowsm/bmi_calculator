@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<canvas id="bmiChart"></canvas>
+<script>
+    function drawChart(labels, data) {
+        var ctx = document.getElementById('bmiChart').getContext('2d');
+        var bmiChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'BMI Over Time',
+                    backgroundColor: 'rgba(0, 119, 204, 0.3)',
+                    data: data
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{ ticks: { beginAtZero: true } }]
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

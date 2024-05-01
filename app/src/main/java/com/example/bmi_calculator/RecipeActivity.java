@@ -72,9 +72,17 @@ public class RecipeActivity extends AppCompatActivity {
                 "350 ml przecieru pomidorowego, passaty z butelki lub kartonu"
         );
 
+        List<String> kanapkaIngredients = Arrays.asList(
+                "Chleb oliwski",
+                "Masło",
+                "Ser",
+                "Pomidor"
+        );
+
         recipesList.add(new Recipe("Kurczak curry", "Pyszny kurczak curry z ryżem", R.drawable.kurczak, kurczakIngredients, genericSteps));
         recipesList.add(new Recipe("Makaron z kurczakiem", "Klasyczne spaghetti carbonara z boczkiem", R.drawable.makaron, makaronIngredients, genericSteps));
         recipesList.add(new Recipe("Pulpety w sosie pomidorowym", "Śródziemnomorskie pulpety z indyka w lekkim sosie", R.drawable.pulpety, pulpetyIngredients, genericSteps));
+        recipesList.add(new Recipe("Kanapka Poncyliusza", "Pyszna kanapka autorska Pawła Poncyliusza", R.drawable.pulpety, kanapkaIngredients, genericSteps));
 
         adapter = new RecipeAdapter(this, recipesList, position -> {
             Recipe clickedRecipe = recipesList.get(position);
